@@ -1,0 +1,75 @@
+﻿@model Lab3.Controllers.ProgrammingLanguageController.IndexViewModel?
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Список типов языков программирования</h1>
+</div>
+
+<form class="row mb-3">
+    <div class="col-10">
+        <select id="PLSelect" class="col-sm-9 form form-select">
+            @foreach (var item in Model.ProgrammingLanguagetList)
+            {
+                if (Model.SelectedProgrammingLanguageListId == item.Id)
+                <option value="@item.Id" selected>@item.Name</option>
+                else
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-2">
+        <a asp-action="Index" asp-controller="ProgrammingLanguageListManager">начальное окно</a>
+    </div>
+</form>
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Наименование ЯП</th>
+                <th>Рейтинг</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ProgrammingLanguages)
+            {
+                <tr>
+                    <td>@item.NamePL</td>
+                    <td>@item.reithingPL</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
+
+<form asp-action="AddProgrammingLanguage" class="row">
+
+    <input name="ProgrammingLanguageListId" id="ProgrammingLanguageListId" type="hidden" value="@Model.SelectedProgrammingLanguageListId" />
+    <div class="col-6">
+        <input class="form-control" name="Name" type="text" placeholder="Наименование ЯП" />
+    </div>
+
+    <div class="col-4">
+        <input class="form-control" name="Reiting" type="text" placeholder="Рейтинг ЯП" />
+    </div>
+
+
+    <div class="col-2">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+            $(function(){
+            $("#PLSelect").change( function(){
+                window.location.href = "/StudeProgrammingLanguagent/Index/" + this.value;
+            });
+        });
+    </script>
+}

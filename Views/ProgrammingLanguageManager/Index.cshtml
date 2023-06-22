@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Lab3.Models.ProgrammingLanguageListDescription>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список типов ЯП</h1>
+
+<p>
+    <a asp-action="Create">Создать новую группу ЯП</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           <th>
+               Название ЯП
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  }) |
+                @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" asp-controller="ProgrammingLanguage">Просмотреть группы ЯП</a>
+</div>
