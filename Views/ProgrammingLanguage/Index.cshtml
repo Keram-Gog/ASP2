@@ -13,9 +13,9 @@
             @foreach (var item in Model.ProgrammingLanguagetList)
             {
                 if (Model.SelectedProgrammingLanguageListId == item.Id)
-                <option value="@item.Id" selected>@item.Name</option>
+               { <option value="@item.Id" selected>@item.Name</option>}
                 else
-                <option value="@item.Id">@item.Name</option>
+                {<option value="@item.Id">@item.Name</option>}
             }
         </select>
     </div>
